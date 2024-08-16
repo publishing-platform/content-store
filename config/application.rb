@@ -40,5 +40,11 @@ module ContentStore
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    # Caching defaults
+    config.default_ttl = ENV.fetch("DEFAULT_TTL", 5.minutes).to_i.seconds
+    config.minimum_ttl = [config.default_ttl, 5.seconds].min
+
+    config.register_router_retries = 3    
   end
 end

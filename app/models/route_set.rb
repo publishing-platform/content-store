@@ -1,0 +1,123 @@
+require 'ostruct'
+
+class RouteSet < OpenStruct
+  def initialize(hash = nil)
+    super
+    self.routes ||= []
+    self.gone_routes ||= []
+    self.redirects ||= []
+  end
+
+  # +item.routes+ should be an array of hashes containing both a 'path' and a
+  # 'type' key. 'path' defines the absolute URL path to the content and 'type'
+  # is either 'exact' or 'prefix', depending on the type of route. For example:
+  #
+  #   [ { 'path' => '/content', 'type' => 'exact' },
+  #     { 'path' => '/content.json', 'type' => 'exact' },
+  #     { 'path' => '/content/subpath', 'type' => 'prefix' } ]
+  #
+  # +item.redirects+ should be an array of hashes containin a 'path', 'type' and
+  # a 'destination' key.  'path' and 'type' are as above, 'destination' it the target
+  # path for the redirect.
+  #
+  # All paths must be below the +base_path+ and +base_path+  must be defined as
+  # a route for the routes to be valid.
+  def self.from_content_item(item)
+    if item.gone?
+      gone_routes = item.routes.map(&:to_h).map(&:deep_symbolize_keys)
+    else
+      routes = item.routes.map(&:to_h).map(&:deep_symbolize_keys)
+    end
+
+    redirects = Array(item.redirects).map(&:to_h).map(&:deep_symbolize_keys)
+
+    new(
+      routes:,
+      gone_routes:,
+      redirects:,
+      base_path: item.base_path,
+      rendering_app: item.router_rendering_app,
+      is_redirect: item.redirect?,
+      is_gone: item.gone?,
+    )
+  end
+
+  def register!
+    return unless any_routes?
+
+    if is_redirect
+      redirects.each do |route|
+        register_redirect(route)
+      end
+    elsif is_gone
+      gone_routes.each do |route|
+        register_gone_route(route)
+      end
+    else
+      routes.each do |route|
+        register_route(route, rendering_app)
+      end
+
+      redirects.each do |route|
+        register_redirect(route)
+      end
+    end
+  end
+
+  def delete!
+    return unless any_routes?
+
+    paths.each do |path|
+      # TODO
+      # router_api.delete_route(path, hard_delete: true)
+    rescue PublishingPlatformApi::HTTPNotFound
+      # Ignore this, as this path could have already been deleted
+      next
+    end
+  end
+
+private
+
+  def register_redirect(route)
+    # TODO
+    # router_api.add_redirect_route(
+    #   route.fetch(:path),
+    #   route.fetch(:type),
+    #   route.fetch(:destination),
+    #   route.fetch(:redirect_type, "permanent"),
+    #   segments_mode: route[:segments_mode],
+    # )
+  end
+
+  def register_gone_route(route)
+    # TODO
+    # router_api.add_gone_route(
+    #   route.fetch(:path),
+    #   route.fetch(:type),
+    # )
+  end
+
+  def register_route(route, rendering_app)
+    # TODO
+    # router_api.add_route(
+    #   route.fetch(:path),
+    #   route.fetch(:type),
+    #   rendering_app,
+    # )
+  end
+
+  def router_api
+    # TODO
+    # @router_api ||= PublishingPlatformApi.router
+  end
+
+  def paths
+    (routes + gone_routes + redirects).map do |hash|
+      hash[:path]
+    end
+  end
+
+  def any_routes?
+    routes.any? || gone_routes.any? || redirects.any?
+  end
+end
