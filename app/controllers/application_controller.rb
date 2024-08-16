@@ -7,6 +7,7 @@ class ApplicationController < ActionController::API
   rescue_from InvalidRequest, with: :error_400
 
 private
+
   def error_404
     head :not_found
   end
@@ -23,7 +24,7 @@ private
   rescue JSON::ParserError
     Rails.logger.warn "error parsing JSON from request body '#{body}'"
     head :bad_request
-  end  
+  end
 
   def encoded_request_path
     Addressable::URI.encode(request_path)
@@ -45,5 +46,5 @@ private
 
   def base_path
     "/#{params[:base_path_without_root]}"
-  end  
+  end
 end

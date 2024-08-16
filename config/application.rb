@@ -26,7 +26,7 @@ module ContentStore
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
-    config.autoload_lib(ignore: %w(assets tasks))
+    config.autoload_lib(ignore: %w[assets tasks])
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -45,6 +45,6 @@ module ContentStore
     config.default_ttl = ENV.fetch("DEFAULT_TTL", 5.minutes).to_i.seconds
     config.minimum_ttl = [config.default_ttl, 5.seconds].min
 
-    config.register_router_retries = 3    
+    config.register_router_retries = 3
   end
 end

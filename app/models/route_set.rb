@@ -1,4 +1,4 @@
-require 'ostruct'
+require "ostruct"
 
 class RouteSet < OpenStruct
   def initialize(hash = nil)
@@ -67,7 +67,7 @@ class RouteSet < OpenStruct
   def delete!
     return unless any_routes?
 
-    paths.each do |path|
+    paths.each do |_path|
       # TODO
       # router_api.delete_route(path, hard_delete: true)
     rescue PublishingPlatformApi::HTTPNotFound

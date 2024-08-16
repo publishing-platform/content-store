@@ -69,25 +69,25 @@ class ContentItem < ApplicationRecord
         },
       ),
     ]
-  end  
-  
+  end
+
   def self.find_by_path(path)
     ::FindByPath.new(self).find(path)
-  end  
+  end
 
   # Prevent "id" being exposed outside of the model - it's synthetic and
   # only of internal use. Other applications should use `content_id` or
   # `base_path` as their unique identifiers.
   def as_json(options = nil)
     super(options).except("id")
-  end  
+  end
 
   # We store the description in a hash because Publishing API can send through
   # multiple content types.
   def description=(value)
     # ...but only wrap the given value in a Hash if it's not already a Hash
     value.is_a?(Hash) ? super : super("value" => value)
-  end  
+  end
 
   def description
     description = super
@@ -97,7 +97,7 @@ class ContentItem < ApplicationRecord
     else
       description
     end
-  end  
+  end
 
   def redirect?
     schema_name == "redirect"
@@ -111,7 +111,7 @@ class ContentItem < ApplicationRecord
     # alternative type of unpublishing through the stack as it is causing issues
     # in production
     schema_name == "gone" && details_is_empty?
-  end  
+  end
 
   def router_rendering_app
     # This is an extension of the hack in `gone?` method.
@@ -126,7 +126,7 @@ class ContentItem < ApplicationRecord
     return rendering_app if schema_name != "gone" || gone?
 
     rendering_app || "frontend"
-  end  
+  end
 
   def valid_auth_bypass_id?(auth_bypass_id)
     return false unless auth_bypass_id
@@ -136,7 +136,7 @@ class ContentItem < ApplicationRecord
     expanded_links.values.flatten.any? do |link|
       link.fetch("auth_bypass_ids", []).include?(auth_bypass_id)
     end
-  end  
+  end
 
   def register_routes(previous_item: nil)
     return unless should_register_routes?(previous_item:)
@@ -148,15 +148,15 @@ class ContentItem < ApplicationRecord
       tries -= 1
       tries.positive? ? retry : raise
     end
-  end  
+  end
 
   def delete_routes
     route_set.delete!
-  end  
+  end
 
   def route_set
     @route_set ||= RouteSet.from_content_item(self)
-  end  
+  end
 
 private
 
@@ -165,9 +165,8 @@ private
 
     true
   end
-  
+
   def details_is_empty?
     details.nil? || details.values.reject(&:blank?).empty?
   end
-
 end

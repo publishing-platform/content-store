@@ -3,11 +3,11 @@ class ContentItemsController < ApplicationController
   before_action :parse_json_request, only: [:update]
   before_action :set_cors_headers, only: [:show]
 
-  def show    
-    render :json => { "hello": "show" }
-  end  
+  def show
+    render json: { "hello": "show" }
+  end
 
-  def update    
+  def update
     result, item = ContentItem.create_or_replace(encoded_base_path, @request_data)
 
     response_body = {}
@@ -24,7 +24,7 @@ class ContentItemsController < ApplicationController
       status = :ok
     end
 
-    render json: response_body, status:    
+    render json: response_body, status:
   end
 
 private

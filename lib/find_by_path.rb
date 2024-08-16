@@ -1,6 +1,6 @@
 # This class is designed to work with a model that has base_path,
 # routes and (optionally) redirect fields (where the routes and redirects
-# field matches the publishing platform schema of an array of objects with 
+# field matches the publishing platform schema of an array of objects with
 # path and type fields)
 #
 # It is designed to make it easy to find an item that matches a particular
