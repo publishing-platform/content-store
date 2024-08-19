@@ -38,6 +38,15 @@ class ContentItemsController < ApplicationController
     render json: response_body, status:
   end
 
+  def destroy
+    content_item = ContentItem.find_by!(base_path: encoded_base_path)
+
+    content_item.delete_routes
+    content_item.destroy!
+
+    render status: :ok
+  end  
+
 private
 
   def redirect_canonical(content_item)
