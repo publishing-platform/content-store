@@ -68,8 +68,7 @@ class RouteSet < OpenStruct
     return unless any_routes?
 
     paths.each do |_path|
-      # TODO
-      # router_api.delete_route(path, hard_delete: true)
+      router_api.delete_route(path, hard_delete: true)
     rescue PublishingPlatformApi::HTTPNotFound
       # Ignore this, as this path could have already been deleted
       next
@@ -79,36 +78,32 @@ class RouteSet < OpenStruct
 private
 
   def register_redirect(route)
-    # TODO
-    # router_api.add_redirect_route(
-    #   route.fetch(:path),
-    #   route.fetch(:type),
-    #   route.fetch(:destination),
-    #   route.fetch(:redirect_type, "permanent"),
-    #   segments_mode: route[:segments_mode],
-    # )
+    router_api.add_redirect_route(
+      route.fetch(:path),
+      route.fetch(:type),
+      route.fetch(:destination),
+      route.fetch(:redirect_type, "permanent"),
+      segments_mode: route[:segments_mode],
+    )
   end
 
   def register_gone_route(route)
-    # TODO
-    # router_api.add_gone_route(
-    #   route.fetch(:path),
-    #   route.fetch(:type),
-    # )
+    router_api.add_gone_route(
+      route.fetch(:path),
+      route.fetch(:type),
+    )
   end
 
   def register_route(route, rendering_app)
-    # TODO
-    # router_api.add_route(
-    #   route.fetch(:path),
-    #   route.fetch(:type),
-    #   rendering_app,
-    # )
+    router_api.add_route(
+      route.fetch(:path),
+      route.fetch(:type),
+      rendering_app,
+    )
   end
 
   def router_api
-    # TODO
-    # @router_api ||= PublishingPlatformApi.router
+    @router_api ||= PublishingPlatformApi.router
   end
 
   def paths
