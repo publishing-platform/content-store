@@ -183,7 +183,7 @@ GEM
     publishing_platform_app_config (0.1.0)
       sentry-rails (~> 5.3)
       sentry-ruby (~> 5.3)
-    publishing_platform_location (0.2.0)
+    publishing_platform_location (0.3.0)
     publishing_platform_rubocop (0.1.0)
       rubocop (= 1.63.4)
       rubocop-ast (= 1.31.3)
