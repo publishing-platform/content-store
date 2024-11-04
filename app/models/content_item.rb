@@ -156,7 +156,7 @@ class ContentItem < ApplicationRecord
 
   def base_path_without_root
     base_path&.sub(%r{^/}, "")
-  end  
+  end
 
   def route_set
     @route_set ||= RouteSet.from_content_item(self)

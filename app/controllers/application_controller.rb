@@ -18,7 +18,7 @@ private
 
   def config
     @config ||= ContentStore::Application.config
-  end  
+  end
 
   def parse_json_request
     # FIXME: base_path in the request body is deprecated and will be considered
@@ -61,5 +61,5 @@ private
     else
       method(:content_item_url)
     end
-  end  
+  end
 end

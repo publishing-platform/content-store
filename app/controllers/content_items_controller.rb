@@ -8,8 +8,8 @@ class ContentItemsController < ApplicationController
 
     set_cache_headers(item)
 
-    return error_404 unless item   
-    return redirect_canonical(item) if item.base_path != encoded_request_path    
+    return error_404 unless item
+    return redirect_canonical(item) if item.base_path != encoded_request_path
 
     if can_view?(item)
       render json: ContentItemPresenter.new(item, api_url_method), status: http_status(item)
@@ -45,7 +45,7 @@ class ContentItemsController < ApplicationController
     content_item.destroy!
 
     render status: :ok
-  end  
+  end
 
 private
 
@@ -58,16 +58,15 @@ private
     return true if item.valid_auth_bypass_id?(auth_bypass_id)
 
     !restricted_access?
-  end 
-  
+  end
+
   def restricted_access?
     # we assume that the presence of an auth_bypass_id without an auth_user_id
     # means a user on the draft stack using only a token without being signed
     # in. These users should only be able to access specific content that
     # is valid for that auth bypass id
     auth_user_id.nil? && auth_bypass_id.present?
-
-  end  
+  end
 
   def auth_user_id
     request.headers["X-Publishing-Platform-Authenticated-User"].then do |user_id|
@@ -75,7 +74,7 @@ private
       # is not signed in.
       user_id == "invalid" ? nil : user_id.presence
     end
-  end  
+  end
 
   def auth_bypass_id
     request.headers["Publishing-Platform-Auth-Bypass-Id"].presence
@@ -92,7 +91,7 @@ private
       },
       status: 403,
     }
-  end  
+  end
 
   def set_cache_headers(item)
     cache_time = config.default_ttl
@@ -122,15 +121,15 @@ private
     else
       cache_time
     end
-  end  
+  end
 
   def max_cache_time(item)
     return unless item.try(:details)
 
     item.details["max_cache_time"]
-  end  
+  end
 
   def http_status(item)
     item.gone? ? 410 : 200
-  end  
+  end
 end
