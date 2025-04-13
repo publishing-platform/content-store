@@ -19,6 +19,7 @@ group :development, :test do
   gem "publishing_platform_schemas"
   gem "publishing_platform_test"
   gem "rspec-rails"
+  gem "timecop"
   gem "webmock", require: false
 end
 
