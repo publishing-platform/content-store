@@ -212,7 +212,7 @@ GEM
       rubocop-rails (= 2.24.1)
       rubocop-rake (= 0.6.0)
       rubocop-rspec (= 2.29.2)
-    publishing_platform_schemas (0.1.2)
+    publishing_platform_schemas (0.2.0)
       json-schema (>= 2.8, < 4.4)
     publishing_platform_sso (0.4.1)
       oauth2 (~> 2.0)
