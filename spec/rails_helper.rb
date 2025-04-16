@@ -77,4 +77,8 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   config.include PublishingPlatformSchemas::RSpecMatchers
+
+  config.before :each, type: :request do
+    create(:user, name: "Test user")
+  end
 end

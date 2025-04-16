@@ -67,7 +67,7 @@ class RouteSet < OpenStruct
   def delete!
     return unless any_routes?
 
-    paths.each do |_path|
+    paths.each do |path|
       router_api.delete_route(path, hard_delete: true)
     rescue PublishingPlatformApi::HTTPNotFound
       # Ignore this, as this path could have already been deleted
