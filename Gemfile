@@ -9,7 +9,6 @@ gem "publishing_platform_api_adapters"
 gem "publishing_platform_app_config"
 gem "publishing_platform_location"
 gem "publishing_platform_sso"
-gem "puma", ">= 5.0"
 gem "rack-cache"
 gem "tzinfo-data", platforms: %i[mswin mswin64 mingw x64_mingw jruby]
 
