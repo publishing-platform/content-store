@@ -23,7 +23,15 @@ jobs:
         uses: publishing-platform/publishing-platform-infrastructure/.github/actions/setup-postgres@main
 
       - name: Checkout repository
-        uses: actions/checkout@v4        
+        uses: actions/checkout@v4   
+
+      - name: Checkout Publishing API (for Content Schemas)
+        uses: actions/checkout@v4
+        with:
+          repository: publishing-platform/publishing-api
+          ref: main
+          path: vendor/publishing-api      
+          token: ${{ secrets.PUBLISHING_PLATFORM_CI_GITHUB_API_TOKEN }}                   
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
@@ -40,4 +48,5 @@ jobs:
         env:
           RAILS_ENV: test
           TEST_DATABASE_URL: ${{ steps.setup-postgres.outputs.db-url }}
+          PUBLISHING_PLATFORM_CONTENT_SCHEMAS_PATH: vendor/publishing-api/content_schemas
         run: bundle exec rake spec
