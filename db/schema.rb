@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_16_120155) do
+ActiveRecord::Schema[8.0].define(version: 2024_08_16_120155) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension "pg_catalog.plpgsql"
 
   create_table "content_items", force: :cascade do |t|
     t.string "base_path"
@@ -57,5 +57,4 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_16_120155) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
 end
