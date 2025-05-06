@@ -80,6 +80,8 @@ GEM
     bigdecimal (3.1.9)
     bootsnap (1.18.4)
       msgpack (~> 1.2)
+    brakeman (7.0.2)
+      racc
     builder (3.3.0)
     capybara (3.40.0)
       addressable
@@ -232,7 +234,8 @@ GEM
       rails (>= 7)
       warden (~> 1.2)
       warden-oauth2 (~> 0.0.1)
-    publishing_platform_test (0.1.0)
+    publishing_platform_test (0.1.1)
+      brakeman (>= 5.0.2)
       capybara (>= 3.36)
       puma
       selenium-webdriver (>= 4.0)
@@ -344,7 +347,7 @@ GEM
     ruby-progressbar (1.13.0)
     rubyzip (2.4.1)
     securerandom (0.4.1)
-    selenium-webdriver (4.31.0)
+    selenium-webdriver (4.32.0)
       base64 (~> 0.2)
       logger (~> 1.4)
       rexml (~> 3.2, >= 3.2.5)
