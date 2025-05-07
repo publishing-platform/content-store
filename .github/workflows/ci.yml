@@ -10,6 +10,15 @@ on:
   pull_request:
 
 jobs:
+  security-analysis:
+    name: Security Analysis
+    uses: publishing-platform/publishing-platform-infrastructure/.github/workflows/brakeman.yml@main
+    secrets: inherit
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+
   lint-ruby:
     name: Lint Ruby
     uses: publishing-platform/publishing-platform-infrastructure/.github/workflows/rubocop.yml@main
