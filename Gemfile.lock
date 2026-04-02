@@ -159,7 +159,7 @@ GEM
     mime-types (3.7.0)
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
-    mime-types-data (3.2026.0203)
+    mime-types-data (3.2026.0331)
     mini_mime (1.1.5)
     minitest (6.0.2)
       drb (~> 2.0)
@@ -211,11 +211,11 @@ GEM
       date
       stringio
     public_suffix (7.0.5)
-    publishing_platform_api_adapters (0.13.1)
-      addressable
+    publishing_platform_api_adapters (0.14.1)
+      addressable (~> 2.8)
       link_header
       null_logger
-      publishing_platform_location
+      publishing_platform_location (~> 0.3)
       rest-client (~> 2.0)
     publishing_platform_app_config (0.3.0)
       puma (>= 5.6, < 7.0)
