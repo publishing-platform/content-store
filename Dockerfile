@@ -1,4 +1,4 @@
-ARG ruby_version=3.2.4
+ARG ruby_version=3.4
 ARG base_image=ghcr.io/publishing-platform/publishing-platform-ruby-base:$ruby_version
 ARG builder_image=ghcr.io/publishing-platform/publishing-platform-ruby-builder:$ruby_version
 
