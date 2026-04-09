@@ -14,6 +14,16 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  codeql-sast:
+    name: CodeQL SAST scan
+    uses: publishing-platform/publishing-platform-infrastructure/.github/workflows/codeql-analysis.yml@main
+    permissions:
+      security-events: write
+
+  dependency-review:
+    name: Dependency Review scan
+    uses: publishing-platform/publishing-platform-infrastructure/.github/workflows/dependency-review.yml@main
+
   security-analysis:
     name: Security Analysis
     uses: publishing-platform/publishing-platform-infrastructure/.github/workflows/brakeman.yml@main
