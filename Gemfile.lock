@@ -127,7 +127,7 @@ GEM
     hashie (5.1.0)
       logger
     http-accept (1.7.0)
-    http-cookie (1.1.0)
+    http-cookie (1.1.6)
       domain_name (~> 0.5)
     i18n (1.14.8)
       concurrent-ruby (~> 1.0)
@@ -161,7 +161,7 @@ GEM
     mime-types (3.7.0)
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
-    mime-types-data (3.2026.0331)
+    mime-types-data (3.2026.0414)
     mini_mime (1.1.5)
     minitest (6.0.3)
       drb (~> 2.0)
@@ -214,7 +214,7 @@ GEM
       date
       stringio
     public_suffix (7.0.5)
-    publishing_platform_api_adapters (0.14.1)
+    publishing_platform_api_adapters (0.14.2)
       addressable (~> 2.8)
       link_header
       null_logger
