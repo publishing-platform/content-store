@@ -222,7 +222,7 @@ GEM
       null_logger
       publishing_platform_location (~> 0.3)
       rest-client (~> 2.0)
-    publishing_platform_app_config (0.5.5)
+    publishing_platform_app_config (0.5.6)
       puma (>= 5.6, < 8.0)
       sentry-rails (>= 5.3, < 7.0)
       sentry-ruby (~> 5.3)
@@ -297,7 +297,7 @@ GEM
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
     rake (13.4.2)
-    rbs (4.0.3)
+    rbs (4.1.0)
       logger
       prism (>= 1.6.0)
       tsort
