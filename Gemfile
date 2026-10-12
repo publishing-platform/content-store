@@ -4,7 +4,7 @@ gem "rails", "8.0.2.1"
 
 gem "bootsnap", require: false
 gem "deepsort"
-gem "pg", "~> 1.6"
+gem "pg", "~> 1.7"
 gem "publishing_platform_api_adapters"
 gem "publishing_platform_app_config"
 gem "publishing_platform_location"
